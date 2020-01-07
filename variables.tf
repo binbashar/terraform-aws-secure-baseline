@@ -64,6 +64,11 @@ variable "audit_log_bucket_name" {
   description = "The name of the S3 bucket to store various audit logs."
 }
 
+variable "audit_log_bucket_custom_policy_json" {
+  description = "Override policy for the audit log bucket. Allows addition of extra policies."
+  default     = "{}"
+}
+
 variable "audit_log_lifecycle_glacier_transition_days" {
   description = "The number of days after log creation when the log file is archived into Glacier."
   default     = 90
@@ -112,8 +117,9 @@ variable "support_iam_role_policy_name" {
   default     = "IAM-Support-Role"
 }
 
-variable "support_iam_role_principal_arn" {
-  description = "The ARN of the IAM principal element by which the support role could be assumed."
+variable "support_iam_role_principal_arns" {
+  type        = list
+  description = "List of ARNs of the IAM principal elements by which the support role could be assumed."
 }
 
 variable "max_password_age" {
@@ -250,6 +256,11 @@ variable "cloudtrail_key_deletion_window_in_days" {
 variable "cloudtrail_name" {
   description = "The name of the trail."
   default     = "cloudtrail-multi-region"
+}
+
+variable "cloudtrail_sns_topic_name" {
+  description = "The name of the sns topic to link to the trail."
+  default     = "cloudtrail-multi-region-sns-topic"
 }
 
 variable "cloudtrail_s3_key_prefix" {

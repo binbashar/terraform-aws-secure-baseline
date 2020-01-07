@@ -13,22 +13,22 @@ locals {
 module "iam_baseline" {
   source = "./modules/iam-baseline"
 
-  aws_account_id                 = var.aws_account_id
-  master_iam_role_name           = var.master_iam_role_name
-  master_iam_role_policy_name    = var.master_iam_role_policy_name
-  manager_iam_role_name          = var.manager_iam_role_name
-  manager_iam_role_policy_name   = var.manager_iam_role_policy_name
-  support_iam_role_name          = var.support_iam_role_name
-  support_iam_role_policy_name   = var.support_iam_role_policy_name
-  support_iam_role_principal_arn = var.support_iam_role_principal_arn
-  minimum_password_length        = var.minimum_password_length
-  password_reuse_prevention      = var.password_reuse_prevention
-  require_lowercase_characters   = var.require_lowercase_characters
-  require_numbers                = var.require_numbers
-  require_uppercase_characters   = var.require_uppercase_characters
-  require_symbols                = var.require_symbols
-  allow_users_to_change_password = var.allow_users_to_change_password
-  max_password_age               = var.max_password_age
+  aws_account_id                  = var.aws_account_id
+  master_iam_role_name            = var.master_iam_role_name
+  master_iam_role_policy_name     = var.master_iam_role_policy_name
+  manager_iam_role_name           = var.manager_iam_role_name
+  manager_iam_role_policy_name    = var.manager_iam_role_policy_name
+  support_iam_role_name           = var.support_iam_role_name
+  support_iam_role_policy_name    = var.support_iam_role_policy_name
+  support_iam_role_principal_arns = var.support_iam_role_principal_arns
+  minimum_password_length         = var.minimum_password_length
+  password_reuse_prevention       = var.password_reuse_prevention
+  require_lowercase_characters    = var.require_lowercase_characters
+  require_numbers                 = var.require_numbers
+  require_uppercase_characters    = var.require_uppercase_characters
+  require_symbols                 = var.require_symbols
+  allow_users_to_change_password  = var.allow_users_to_change_password
+  max_password_age                = var.max_password_age
 
   tags = var.tags
 }
@@ -43,6 +43,7 @@ module "cloudtrail_baseline" {
   enabled                           = local.is_cloudtrail_enabled
   aws_account_id                    = var.aws_account_id
   cloudtrail_name                   = var.cloudtrail_name
+  cloudtrail_sns_topic_name         = var.cloudtrail_sns_topic_name
   cloudwatch_logs_group_name        = var.cloudtrail_cloudwatch_logs_group_name
   cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
   iam_role_name                     = var.cloudtrail_iam_role_name
